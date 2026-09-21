@@ -23,6 +23,9 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: bun run build
 
+      - name: Remove conflicting wrangler.json
+        run: rm -f .output/server/wrangler.json
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
