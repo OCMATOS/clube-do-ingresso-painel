@@ -1,0 +1,5 @@
+- [x] NFR: cruzar CRM x fechamento mensal pelo campo ID do evento (ID da planilha CRM encontra o ID da planilha de fechamento)
+- [x] Filtro de ID (texto multi + seleção múltipla) nas abas
+- [x] NFR: unir CRM e fechamento por ID, exibindo cada evento uma vez mesmo quando existir em apenas uma base
+- [x] Outbound SDR: importar somente os 45 leads novos da aba geral a partir da linha 516 e classificá-los como Novos
+- [x] Outbound SDR: exibir leads fora do ICP em Todos, com sinal vermelho e filtro próprio

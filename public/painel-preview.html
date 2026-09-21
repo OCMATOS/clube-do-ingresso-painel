@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Design System — Preview Fase 1 · Clube do Ingresso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;620;640;700&display=swap" />
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<style>
+  :root{
+    --ds-brand-900:#1B0620;--ds-brand-800:#270929;--ds-brand-600:#4A1550;--ds-brand-400:#7B3E82;--ds-brand-100:#F3ECF5;
+    --ds-brand-accent:#F7B733;--ds-brand-gradient-warm:#F28C22;
+    --ds-bg:#FAFAFC;--ds-surface:#FFFFFF;--ds-surface-alt:#F5F5F8;--ds-border:#E6E4EC;--ds-border-strong:#D3D0DD;
+    --ds-text-1:#17161C;--ds-text-2:#55525F;--ds-text-3:#6E6A78;
+    --ds-success:#0F7350;--ds-success-bg:#E8F6F0;
+    --ds-danger:#C0303A;--ds-danger-bg:#FCECEC;
+    --ds-warning:#A55A0A;--ds-warning-bg:#FDF3E5;
+    --ds-info:#2A5FD6;--ds-info-bg:#EAF0FD;
+    --ds-neutral:#6F6B7A;--ds-neutral-bg:#F1F0F4;
+    --ds-chart-1:#4A1550;--ds-chart-2:#2A5FD6;--ds-chart-3:#12855A;--ds-chart-4:#C97614;
+    --ds-chart-5:#B0468C;--ds-chart-6:#0E7C8A;--ds-chart-7:#8A6BD1;--ds-chart-8:#8F8B99;
+    --ds-radius-sm:6px;--ds-radius-md:10px;--ds-radius-lg:14px;--ds-radius-pill:999px;
+    --ds-shadow-sm:0 1px 2px rgba(23,22,28,.06);--ds-shadow-md:0 4px 16px rgba(23,22,28,.08);--ds-shadow-pop:0 12px 32px rgba(23,22,28,.14);
+    --ds-sp-1:4px;--ds-sp-2:8px;--ds-sp-3:12px;--ds-sp-4:16px;--ds-sp-5:24px;--ds-sp-6:32px;--ds-sp-7:48px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--ds-bg);color:var(--ds-text-1);font-family:"Inter",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-feature-settings:"cv11" 1,"ss01" 1;-webkit-font-smoothing:antialiased}
+  header.top{background:var(--ds-brand-900);color:#fff;padding:20px 32px;position:sticky;top:0;z-index:10}
+  header.top h1{margin:0;font-size:22px;line-height:28px;font-weight:620;letter-spacing:-.005em}
+  header.top p{margin:4px 0 0;font-size:12px;line-height:18px;color:#c9b8cd;font-weight:450}
+  main{max-width:1200px;margin:0 auto;padding:32px}
+  section{margin-bottom:48px}
+  h2{font-size:16px;line-height:22px;font-weight:600;margin:0 0 4px;color:var(--ds-text-1)}
+  h2 + .sub{font-size:12px;line-height:18px;color:var(--ds-text-3);margin:0 0 16px}
+  .card{background:var(--ds-surface);border:1px solid var(--ds-border);border-radius:var(--ds-radius-lg);box-shadow:var(--ds-shadow-sm);padding:24px}
+  .grid{display:grid;gap:12px}
+  .g-swatch{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+  .swatch{border:1px solid var(--ds-border);border-radius:var(--ds-radius-md);overflow:hidden;background:var(--ds-surface)}
+  .swatch .chip{height:64px;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;color:#fff;font-size:11px;line-height:16px;font-weight:550;letter-spacing:.04em;text-transform:uppercase}
+  .swatch .meta{padding:8px 10px 10px}
+  .swatch .name{font-size:13px;line-height:20px;font-weight:600;color:var(--ds-text-1)}
+  .swatch .hex{font-size:12px;line-height:18px;color:var(--ds-text-3);font-variant-numeric:tabular-nums}
+  .swatch .ratio{margin-top:4px;font-size:11px;line-height:16px;font-weight:550;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:var(--ds-radius-pill);font-size:11px;line-height:16px;font-weight:550;letter-spacing:.02em}
+  .badge.pass{background:var(--ds-success-bg);color:var(--ds-success)}
+  .badge.warn{background:var(--ds-warning-bg);color:var(--ds-warning)}
+  .badge.fail{background:var(--ds-danger-bg);color:var(--ds-danger)}
+  .badge.info{background:var(--ds-info-bg);color:var(--ds-info)}
+  .badge.neutral{background:var(--ds-neutral-bg);color:var(--ds-neutral)}
+  .type-row{display:flex;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px dashed var(--ds-border)}
+  .type-row:last-child{border:0}
+  .type-row .tag{width:110px;font-size:11px;line-height:16px;font-weight:550;letter-spacing:.04em;text-transform:uppercase;color:var(--ds-text-3);font-variant-numeric:tabular-nums}
+  .type-row .demo{color:var(--ds-text-1)}
+  .radius-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .radius-box{background:var(--ds-brand-100);border:1px solid var(--ds-border);height:100px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--ds-brand-800);font-weight:600}
+  .shadow-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+  .shadow-box{background:var(--ds-surface);border-radius:var(--ds-radius-lg);padding:24px;font-size:12px;color:var(--ds-text-3);text-align:center}
+  .icons{display:flex;flex-wrap:wrap;gap:20px;align-items:center;color:var(--ds-text-2)}
+  .icons .ic{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;color:var(--ds-text-3)}
+  .icons svg{stroke-width:1.75;color:var(--ds-brand-800)}
+  .before-after{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .ba-col{border:1px solid var(--ds-border);border-radius:var(--ds-radius-md);padding:16px;background:var(--ds-surface)}
+  .ba-label{font-size:11px;line-height:16px;font-weight:550;letter-spacing:.04em;text-transform:uppercase;color:var(--ds-text-3);margin-bottom:12px}
+  .kpi{display:flex;flex-direction:column;gap:4px}
+  .kpi .l{font-size:11px;text-transform:uppercase;letter-spacing:.04em;font-weight:550;color:var(--ds-text-3)}
+  .kpi .v{font-size:32px;line-height:38px;font-weight:640;letter-spacing:-.01em;color:var(--ds-text-1);font-variant-numeric:tabular-nums}
+  .kpi .d{font-size:12px;color:var(--ds-success);font-weight:550}
+  .decor-note{margin-top:12px;padding:12px;background:var(--ds-warning-bg);border-radius:var(--ds-radius-md);border-left:3px solid var(--ds-warning);font-size:12px;color:var(--ds-text-2);line-height:18px}
+  .commit{background:var(--ds-brand-100);border-left:3px solid var(--ds-brand-600);padding:16px;border-radius:var(--ds-radius-md);color:var(--ds-brand-900);font-size:13px;line-height:20px}
+  .commit strong{color:var(--ds-brand-800)}
+  @media(max-width:760px){main{padding:16px}.before-after,.radius-grid,.shadow-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Design System · Fase 1 — Preview</h1>
+  <p>Fundação: tokens, tipografia, ícones e ratios de contraste. Nenhum componente do painel foi alterado.</p>
+</header>
+
+<main>
+
+<section>
+  <h2>Compromisso de migração (Fase 7)</h2>
+  <p class="sub">Registro do contrato acordado antes de destravar a Fase 2.</p>
+  <div class="commit">
+    A partir da Fase 2, todo componente refatorado usa exclusivamente tokens <strong>--ds-*</strong>. Nenhuma variável legada nova será criada.
+    Na Fase 7 o bloco <code>:root</code> legado e todos os aliases são removidos; em seguida o prefixo <code>--ds-</code> é renomeado para o nome final
+    (<code>--brand-800</code>, <code>--text-1</code>, …) em uma única passada. A auditoria fecha com zero ocorrências de vars antigas.
+  </div>
+</section>
+
+<section id="mapeamento">
+  <h2>Aliasing legado → tokens novos</h2>
+  <p class="sub">Vars antigas ainda existem no <code>:root</code> apenas como apelidos. Mudanças aceitas: laranja semântico mais escuro, verde mais escuro, sombra mais suave, radius 18→14px, muted corrigido.</p>
+  <div class="card">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums">
+      <thead><tr style="background:var(--ds-surface-alt);text-align:left">
+        <th style="padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ds-text-2);font-weight:600">Legado</th>
+        <th style="padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ds-text-2);font-weight:600">Aponta para</th>
+        <th style="padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ds-text-2);font-weight:600">Valor final</th>
+        <th style="padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ds-text-2);font-weight:600">Nota</th>
+      </tr></thead>
+      <tbody id="alias-body"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="paleta">
+  <h2>Paleta — swatches com ratio de contraste</h2>
+  <p class="sub">Cada swatch mostra o par recomendado e o WCAG ratio. Meta: ≥4.5:1 para texto, ≥3:1 para elemento gráfico.</p>
+  <div class="grid g-swatch" id="palette"></div>
+  <div class="decor-note">
+    <strong>Exceções documentadas:</strong> <code>--ds-brand-accent</code> (#F7B733, 1.78:1) e <code>--ds-brand-gradient-warm</code> (#F28C22, 2.46:1)
+    ficam abaixo de 3:1 sobre branco. WCAG 1.4.11 isenta logotipos/marca — esses tokens são usados apenas em elementos decorativos de identidade
+    (barras do logo, círculo "versus", bullet). Nunca carregam dado nem texto. Se em algum momento forem usados como cor de série de dado, um alerta deve ser aberto.
+  </div>
+</section>
+
+<section id="tipografia">
+  <h2>Tipografia — escala fechada (8 degraus)</h2>
+  <p class="sub">Fonte única: Inter Variable. Zero meio-pixel. Números em <code>tabular-nums</code>.</p>
+  <div class="card">
+    <div class="type-row"><span class="tag">display 32/38 · 640</span><span class="demo" style="font-size:32px;line-height:38px;font-weight:640;letter-spacing:-.01em">R$ 1.284.560</span></div>
+    <div class="type-row"><span class="tag">h1 22/28 · 620</span><span class="demo" style="font-size:22px;line-height:28px;font-weight:620;letter-spacing:-.005em">Painel Executivo CRM</span></div>
+    <div class="type-row"><span class="tag">h2 16/22 · 600</span><span class="demo" style="font-size:16px;line-height:22px;font-weight:600">Geração de negócios por dia</span></div>
+    <div class="type-row"><span class="tag">h3 14/20 · 600</span><span class="demo" style="font-size:14px;line-height:20px;font-weight:600">SDR responsável</span></div>
+    <div class="type-row"><span class="tag">body 13/20 · 450</span><span class="demo" style="font-size:13px;line-height:20px;font-weight:450">Corpo padrão de célula, descrição de card, texto denso de tabela.</span></div>
+    <div class="type-row"><span class="tag">sm 12/18 · 450</span><span class="demo" style="font-size:12px;line-height:18px;font-weight:450;color:var(--ds-text-3)">Legenda de gráfico, meta de card, eixo</span></div>
+    <div class="type-row"><span class="tag">xs 11/16 · 550</span><span class="demo" style="font-size:11px;line-height:16px;font-weight:550;text-transform:uppercase;letter-spacing:.04em;color:var(--ds-text-3)">Chip / Badge / Rótulo</span></div>
+    <div class="type-row"><span class="tag">num · 560 tabular</span><span class="demo" style="font-size:14px;font-weight:560;font-variant-numeric:tabular-nums">R$ 12.480 · 1.284 · 47,3% · ▲ 12,4%</span></div>
+  </div>
+</section>
+
+<section id="radius">
+  <h2>Border radius — 4 valores permitidos</h2>
+  <div class="radius-grid">
+    <div class="radius-box" style="border-radius:6px">sm · 6</div>
+    <div class="radius-box" style="border-radius:10px">md · 10</div>
+    <div class="radius-box" style="border-radius:14px">lg · 14</div>
+    <div class="radius-box" style="border-radius:999px">pill · 999</div>
+  </div>
+</section>
+
+<section id="elevacao">
+  <h2>Elevação — 3 níveis</h2>
+  <div class="shadow-grid">
+    <div class="shadow-box" style="box-shadow:var(--ds-shadow-sm);border:1px solid var(--ds-border)">shadow-sm · card padrão</div>
+    <div class="shadow-box" style="box-shadow:var(--ds-shadow-md)">shadow-md · card destacado</div>
+    <div class="shadow-box" style="box-shadow:var(--ds-shadow-pop)">shadow-pop · tooltip / dropdown</div>
+  </div>
+</section>
+
+<section id="icones">
+  <h2>Ícones — lucide (16 / 20 / 24px)</h2>
+  <p class="sub">stroke-width 1.75 · cor herda do texto.</p>
+  <div class="card">
+    <div class="icons">
+      <div class="ic"><i data-lucide="layout-dashboard" style="width:16px;height:16px"></i><span>16</span></div>
+      <div class="ic"><i data-lucide="layout-dashboard" style="width:20px;height:20px"></i><span>20</span></div>
+      <div class="ic"><i data-lucide="layout-dashboard" style="width:24px;height:24px"></i><span>24</span></div>
+    </div>
+    <div style="height:1px;background:var(--ds-border);margin:16px 0"></div>
+    <div class="icons">
+      <div class="ic"><i data-lucide="trending-up"></i><span>Evolução</span></div>
+      <div class="ic"><i data-lucide="calendar-days"></i><span>Geração</span></div>
+      <div class="ic"><i data-lucide="users"></i><span>Performance</span></div>
+      <div class="ic"><i data-lucide="swords"></i><span>Mercado</span></div>
+      <div class="ic"><i data-lucide="circle-alert"></i><span>Perdas</span></div>
+      <div class="ic"><i data-lucide="handshake"></i><span>Fechamento</span></div>
+      <div class="ic"><i data-lucide="building-2"></i><span>Agência</span></div>
+      <div class="ic"><i data-lucide="file-text"></i><span>NFR</span></div>
+      <div class="ic"><i data-lucide="database"></i><span>Base</span></div>
+      <div class="ic"><i data-lucide="arrow-up-right" style="color:var(--ds-success)"></i><span>Alta</span></div>
+      <div class="ic"><i data-lucide="arrow-down-right" style="color:var(--ds-danger)"></i><span>Queda</span></div>
+      <div class="ic"><i data-lucide="minus" style="color:var(--ds-text-3)"></i><span>Estável</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="antes-depois">
+  <h2>Antes × depois — mesmo KPI, mesma cor semântica</h2>
+  <p class="sub">Prova visual do impacto dos ajustes (radius 18→14, sombra mais leve, verde mais escuro).</p>
+  <div class="before-after">
+    <div class="ba-col" style="border-radius:18px;box-shadow:0 12px 28px rgba(20,13,40,.08)">
+      <div class="ba-label">Antes (legado)</div>
+      <div class="kpi"><span class="l">Total ganho</span>
+        <span class="v">R$ 284.560</span>
+        <span class="d" style="color:#16a34a">▲ 12,4% vs. mês anterior</span></div>
+    </div>
+    <div class="ba-col">
+      <div class="ba-label">Depois (design system)</div>
+      <div class="kpi"><span class="l">Total ganho</span>
+        <span class="v">R$ 284.560</span>
+        <span class="d">▲ 12,4% vs. mês anterior</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Auditoria de contraste — tabela completa</h2>
+  <p class="sub">Todos os pares texto/fundo e elemento gráfico usados nos tokens. Bugs corrigidos na origem antes deste preview.</p>
+  <div class="card" style="overflow:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums;min-width:600px">
+      <thead><tr style="background:var(--ds-surface-alt);text-align:left">
+        <th style="padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ds-text-2);font-weight:600">Par</th>
+        <th style="padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ds-text-2);font-weight:600;text-align:right">Ratio</th>
+        <th style="padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ds-text-2);font-weight:600">Uso</th>
+        <th style="padding:10px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ds-text-2);font-weight:600">Status</th>
+      </tr></thead>
+      <tbody id="audit-body"></tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<script>
+  // WCAG contrast
+  function rl(c){c/=255;return c<=.03928?c/12.92:Math.pow((c+.055)/1.055,2.4)}
+  function lum(h){h=h.replace('#','');const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);return .2126*rl(r)+.7152*rl(g)+.0722*rl(b)}
+  function ratio(a,b){const la=lum(a),lb=lum(b);const hi=Math.max(la,lb),lo=Math.min(la,lb);return (hi+.05)/(lo+.05)}
+  function status(r,graphic){if(graphic){return r>=3?['pass','OK ≥3']:['fail','FAIL <3']}return r>=4.5?['pass','AA ≥4.5']:r>=3?['warn','AA large']:['fail','FAIL']}
+
+  // Alias table
+  const aliases=[
+    ['--bg','--ds-bg','#FAFAFC','idêntico visual'],
+    ['--card','--ds-surface','#FFFFFF','idêntico'],
+    ['--ink','--ds-text-1','#17161C','mais contrastado'],
+    ['--muted','--ds-text-3','#6E6A78','corrigido AA (era #8B8794 3.5:1 → 5.26:1)'],
+    ['--line','--ds-border','#E6E4EC','idêntico'],
+    ['--purple','--ds-brand-800','#270929','idêntico'],
+    ['--red','--ds-danger','#C0303A','unifica com --red2 (opção A)'],
+    ['--red2','--ds-danger','#C0303A','—'],
+    ['--orange','--ds-warning','#A55A0A','semântico (badges/alertas/texto AA)'],
+    ['--yellow','--ds-brand-accent','#F7B733','promovido a token de marca'],
+    ['--green','--ds-success','#0F7350','unifica com --green2 (opção A)'],
+    ['--green2','--ds-success','#0F7350','ajustado para passar AA em badge'],
+    ['--blue','--ds-info','#2A5FD6','próximo'],
+    ['--shadow','--ds-shadow-md','0 4px 16px rgba(23,22,28,.08)','mais suave'],
+    ['--radius','--ds-radius-lg','14px','antes 18px'],
+  ];
+  document.getElementById('alias-body').innerHTML=aliases.map(([o,n,v,note])=>`
+    <tr style="border-top:1px solid var(--ds-border)">
+      <td style="padding:10px"><code>${o}</code></td>
+      <td style="padding:10px"><code>${n}</code></td>
+      <td style="padding:10px;color:var(--ds-text-2)">${v}</td>
+      <td style="padding:10px;color:var(--ds-text-3);font-size:12px">${note}</td>
+    </tr>`).join('');
+
+  // Swatches
+  const groups=[
+    {t:'Marca',items:[['--ds-brand-900','#1B0620','#fff'],['--ds-brand-800','#270929','#fff'],['--ds-brand-600','#4A1550','#fff'],['--ds-brand-400','#7B3E82','#fff'],['--ds-brand-100','#F3ECF5','#270929']]},
+    {t:'Neutros',items:[['--ds-bg','#FAFAFC','#17161C'],['--ds-surface','#FFFFFF','#17161C'],['--ds-surface-alt','#F5F5F8','#17161C'],['--ds-border','#E6E4EC','#17161C'],['--ds-border-strong','#D3D0DD','#17161C']]},
+    {t:'Texto',items:[['--ds-text-1','#17161C','#fff'],['--ds-text-2','#55525F','#fff'],['--ds-text-3','#6E6A78','#fff']]},
+    {t:'Semântico',items:[['--ds-success','#0F7350','#fff'],['--ds-danger','#C0303A','#fff'],['--ds-warning','#A55A0A','#fff'],['--ds-info','#2A5FD6','#fff'],['--ds-neutral','#6F6B7A','#fff']]},
+    {t:'Gráficos categóricos',items:[['--ds-chart-1','#4A1550','#fff'],['--ds-chart-2','#2A5FD6','#fff'],['--ds-chart-3','#12855A','#fff'],['--ds-chart-4','#C97614','#fff'],['--ds-chart-5','#B0468C','#fff'],['--ds-chart-6','#0E7C8A','#fff'],['--ds-chart-7','#8A6BD1','#fff'],['--ds-chart-8','#8F8B99','#fff']]},
+    {t:'Marca decorativa (isento — só logo/ornamento)',items:[['--ds-brand-accent','#F7B733','#17161C'],['--ds-brand-gradient-warm','#F28C22','#fff']]},
+  ];
+  const pal=document.getElementById('palette');
+  groups.forEach(g=>{
+    const hdr=document.createElement('div');
+    hdr.style.cssText='grid-column:1/-1;font-size:11px;text-transform:uppercase;letter-spacing:.04em;font-weight:550;color:var(--ds-text-3);margin-top:8px';
+    hdr.textContent=g.t; pal.appendChild(hdr);
+    g.items.forEach(([name,hex,fg])=>{
+      const rWhite=ratio(hex,'#FFFFFF'), rSurf=ratio(hex,'#F5F5F8');
+      const isDecor=g.t.startsWith('Marca decorativa');
+      const [cls,lbl]=status(rWhite,isDecor||g.t==='Gráficos categóricos');
+      const el=document.createElement('div'); el.className='swatch';
+      el.innerHTML=`
+        <div class="chip" style="background:${hex};color:${fg}"><span>Aa</span><span>${hex}</span></div>
+        <div class="meta">
+          <div class="name">${name}</div>
+          <div class="hex">${hex}</div>
+          <div class="ratio">
+            <span class="badge ${cls}">${lbl}</span>
+            <span style="color:var(--ds-text-3)">${rWhite.toFixed(2)}:1 sobre #FFF · ${rSurf.toFixed(2)}:1 sobre alt</span>
+          </div>
+        </div>`;
+      pal.appendChild(el);
+    });
+  });
+
+  // Full audit table
+  const audit=[
+    ['text-1 / surface','#17161C','#FFFFFF','texto'],
+    ['text-1 / bg','#17161C','#FAFAFC','texto'],
+    ['text-1 / surface-alt','#17161C','#F5F5F8','texto'],
+    ['text-2 / surface','#55525F','#FFFFFF','texto'],
+    ['text-2 / surface-alt','#55525F','#F5F5F8','texto'],
+    ['text-3 / surface','#6E6A78','#FFFFFF','texto'],
+    ['text-3 / bg','#6E6A78','#FAFAFC','texto'],
+    ['text-3 / surface-alt','#6E6A78','#F5F5F8','texto'],
+    ['brand-800 / surface','#270929','#FFFFFF','texto'],
+    ['white / brand-800','#FFFFFF','#270929','texto (header)'],
+    ['white / brand-900','#FFFFFF','#1B0620','texto'],
+    ['success / surface','#0F7350','#FFFFFF','texto'],
+    ['success / success-bg','#0F7350','#E8F6F0','texto badge'],
+    ['danger / surface','#C0303A','#FFFFFF','texto'],
+    ['danger / danger-bg','#C0303A','#FCECEC','texto badge'],
+    ['warning / surface','#A55A0A','#FFFFFF','texto'],
+    ['warning / warning-bg','#A55A0A','#FDF3E5','texto badge'],
+    ['info / surface','#2A5FD6','#FFFFFF','texto'],
+    ['info / info-bg','#2A5FD6','#EAF0FD','texto badge'],
+    ['neutral / neutral-bg','#6F6B7A','#F1F0F4','texto badge'],
+    ['chart-1 / surface','#4A1550','#FFFFFF','gráfico'],
+    ['chart-2 / surface','#2A5FD6','#FFFFFF','gráfico'],
+    ['chart-3 / surface','#12855A','#FFFFFF','gráfico'],
+    ['chart-4 / surface','#C97614','#FFFFFF','gráfico'],
+    ['chart-5 / surface','#B0468C','#FFFFFF','gráfico'],
+    ['chart-6 / surface','#0E7C8A','#FFFFFF','gráfico'],
+    ['chart-7 / surface','#8A6BD1','#FFFFFF','gráfico'],
+    ['chart-8 / surface','#8F8B99','#FFFFFF','gráfico'],
+    ['brand-accent / surface (decor. isento)','#F7B733','#FFFFFF','decorativo'],
+    ['gradient-warm / surface (decor. isento)','#F28C22','#FFFFFF','decorativo'],
+  ];
+  document.getElementById('audit-body').innerHTML=audit.map(([n,f,b,u])=>{
+    const r=ratio(f,b); const graphic=u==='gráfico'||u==='decorativo';
+    const [cls,lbl]=status(r,graphic);
+    return `<tr style="border-top:1px solid var(--ds-border)">
+      <td style="padding:8px 10px">${n}</td>
+      <td style="padding:8px 10px;text-align:right;font-weight:560">${r.toFixed(2)}:1</td>
+      <td style="padding:8px 10px;color:var(--ds-text-3)">${u}</td>
+      <td style="padding:8px 10px"><span class="badge ${cls}">${lbl}</span></td>
+    </tr>`;
+  }).join('');
+
+  if(window.lucide) window.lucide.createIcons();
+  else window.addEventListener('load',()=>window.lucide&&window.lucide.createIcons());
+</script>
+</body>
+</html>

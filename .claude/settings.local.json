@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Usuario\\\\OneDrive\\\\Área de Trabalho\\\\Odair\\\\CLUBE DO INGRESSO\\\\PAINEL CLAUDE\\\\src\" -Recurse -File | Select-Object -First 30 | ForEach-Object { $_.FullName.Replace\\(\"C:\\\\Users\\\\Usuario\\\\OneDrive\\\\Área de Trabalho\\\\Odair\\\\CLUBE DO INGRESSO\\\\PAINEL CLAUDE\\\\\", \"\"\\) })",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Usuario\\\\OneDrive\\\\Área de Trabalho\\\\Odair\\\\CLUBE DO INGRESSO\\\\PAINEL CLAUDE\\\\src\" -Recurse -Directory | Where-Object { $_.Name -notlike 'ui' })",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Usuario\\\\OneDrive\\\\Área de Trabalho\\\\Odair\\\\CLUBE DO INGRESSO\\\\PAINEL CLAUDE\\\\src\\\\routes\\\\_authenticated\" -Recurse | Select-Object -ExpandProperty FullName | ForEach-Object { $_.Replace\\(\"C:\\\\Users\\\\Usuario\\\\OneDrive\\\\Área de Trabalho\\\\Odair\\\\CLUBE DO INGRESSO\\\\PAINEL CLAUDE\\\\\", \"\"\\) } | Head -20)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Usuario\\\\OneDrive\\\\Área de Trabalho\\\\Odair\\\\CLUBE DO INGRESSO\\\\PAINEL CLAUDE\\\\src\\\\routes\\\\_authenticated\" -Recurse -File | Select-Object -First 30 | ForEach-Object { $_.FullName.Replace\\(\"C:\\\\Users\\\\Usuario\\\\OneDrive\\\\Área de Trabalho\\\\Odair\\\\CLUBE DO INGRESSO\\\\PAINEL CLAUDE\\\\\", \"\"\\) })",
+      "mcp__2a6731ee-cc0e-4d9b-8cb3-f551575ebcc4__list_projects",
+      "Bash(gh auth *)",
+      "mcp__2a6731ee-cc0e-4d9b-8cb3-f551575ebcc4__get_project",
+      "mcp__2a6731ee-cc0e-4d9b-8cb3-f551575ebcc4__create_project",
+      "mcp__2a6731ee-cc0e-4d9b-8cb3-f551575ebcc4__get_publishable_keys"
+    ]
+  }
+}
