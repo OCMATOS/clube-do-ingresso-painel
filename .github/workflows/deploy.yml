@@ -22,10 +22,19 @@ jobs:
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: bun run build
-      
+
+      - name: Debug build output
+        run: |
+          echo "Listing build artifacts..."
+          ls -la
+          echo "--- .output directory ---"
+          [ -d .output ] && ls -la .output || echo ".output not found"
+          [ -d .output/public ] && ls -la .output/public || echo ".output/public not found"
+
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy .output/public --project-name=clube-do-ingresso-painel
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          bun install -g wrangler
+          wrangler pages deploy .output/public --project-name=clube-do-ingresso-painel
