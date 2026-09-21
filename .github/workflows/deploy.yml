@@ -23,18 +23,9 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: bun run build
 
-      - name: Debug build output
-        run: |
-          echo "Listing build artifacts..."
-          ls -la
-          echo "--- .output directory ---"
-          [ -d .output ] && ls -la .output || echo ".output not found"
-          [ -d .output/public ] && ls -la .output/public || echo ".output/public not found"
-
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: clube-do-ingresso-painel
-          directory: .output/public
+          command: pages deploy .output/public --project-name clube-do-ingresso-painel
