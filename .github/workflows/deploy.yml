@@ -32,9 +32,9 @@ jobs:
           [ -d .output/public ] && ls -la .output/public || echo ".output/public not found"
 
       - name: Deploy to Cloudflare Pages
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: |
-          bun install -g wrangler
-          wrangler pages deploy .output/public --project-name=clube-do-ingresso-painel
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: clube-do-ingresso-painel
+          directory: .output/public
