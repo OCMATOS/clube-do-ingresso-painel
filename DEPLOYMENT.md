@@ -11,8 +11,8 @@
 ## Credenciais Obtidas
 
 ### Supabase
-- **Project URL:** `https://mhcatzwgocplvqjdhyfp.supabase.co`
-- **Project ID:** `mhcatzwgocplvqjdhyfp`
+- **Project URL:** `https://mhcatzwgocplvqjqhyfp.supabase.co`
+- **Project ID:** `mhcatzwgocplvqjqhyfp`
 - **Publishable Key:** `sb_publishable_4Gc9PyzRnj2ZHNKF6WsZhQ_VXwmDgMJ`
 - **Service Role Key:** _(salvo em GitHub Secrets - não adicionar ao repositório)_
 - **Region:** South America (São Paulo) - sa-east-1
@@ -66,7 +66,7 @@ git push origin main
 ## URLs Finais
 - **Painel ao vivo:** `https://clube-do-ingresso-painel.pages.dev`
 - **GitHub:** https://github.com/OCMATOS/clube-do-ingresso-painel
-- **Supabase:** https://supabase.com/project/mhcatzwgocplvqjdhyfp
+- **Supabase:** https://supabase.com/project/mhcatzwgocplvqjqhyfp
 
 ---
 
